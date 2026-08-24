@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore our collection of beautifully crafted Ganpati Murtis."
+    >
+
+    <title>Shree Ganesh Murti | Our Collection</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            <span class="logo-symbol">ॐ</span>
+
+            <span>
+                Shree Ganesh
+                <small>Murti Collection</small>
+            </span>
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#collection">
+                Collection
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open menu"
+        >
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MOBILE MENU
+    ========================== -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+    >
+
+        <a href="#collection">
+            Collection
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    ॥ श्री गणेशाय नमः ॥
+                </p>
+
+                <h1>
+                    Find Your
+                    <span>Bappa</span>
+                </h1>
+
+                <p class="hero-description">
+                    Explore our carefully selected collection
+                    of Ganpati Murtis. Browse by design, size,
+                    material and availability.
+                </p>
+
+
+                <a
+                    href="#collection"
+                    class="primary-button"
+                >
+                    Explore Collection
+                    <span>↓</span>
+                </a>
+
+            </div>
+
+
+            <div class="hero-bottom">
+
+                <div>
+                    <strong id="heroProductCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Murtis in Collection
+                    </span>
+                </div>
+
+
+                <div class="hero-scroll">
+                    Scroll to explore
+                    <span>↓</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COLLECTION
+        ========================== -->
+
+        <section
+            class="collection section"
+            id="collection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        OUR COLLECTION
+                    </p>
+
+                    <h2>
+                        Bappa For Every Home
+                    </h2>
+
+                </div>
+
+
+                <p class="section-description">
+                    Browse our current collection and find
+                    a Murti that feels right for your celebration.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="gallery-controls">
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search by name, style or material..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- FILTERS -->
+
+                <div class="filters">
+
+                    <button
+                        class="filter-button active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="available"
+                    >
+                        Available
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="eco-friendly"
+                    >
+                        Eco-Friendly
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="shadu-mati"
+                    >
+                        Shadu Mati
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="premium"
+                    >
+                        Premium
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTS INFO -->
+
+            <div class="results-bar">
+
+                <p>
+                    Showing
+                    <strong id="resultCount">0</strong>
+                    Murtis
+                </p>
+
+
+                <select id="sortSelect">
+
+                    <option value="featured">
+                        Featured
+                    </option>
+
+                    <option value="price-low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price-high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="height-low">
+                        Height: Small to Large
+                    </option>
+
+                    <option value="height-high">
+                        Height: Large to Small
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PRODUCTS -->
+
+            <div
+                class="products-grid"
+                id="productsGrid"
+            >
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    ॐ
+                </div>
+
+                <h3>
+                    No Murtis Found
+                </h3>
+
+                <p>
+                    Try changing your search or filter.
+                </p>
+
+                <button
+                    class="secondary-button"
+                    id="clearFiltersBtn"
+                >
+                    Clear Filters
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section
+            class="about section"
+            id="about"
+        >
+
+            <div class="about-content">
+
+                <div class="about-text">
+
+                    <p class="eyebrow">
+                        ABOUT OUR COLLECTION
+                    </p>
+
+                    <h2>
+                        Every Bappa
+                        Has A Story.
+                    </h2>
+
+                    <p>
+                        We bring together beautifully crafted
+                        Ganpati Murtis in different styles,
+                        sizes and materials so that every family
+                        can find their perfect Bappa.
+                    </p>
+
+                    <p>
+                        Scan, explore and choose the Murti
+                        that feels right for your celebration.
+                    </p>
+
+                </div>
+
+
+                <div class="about-features">
+
+                    <div class="about-feature">
+
+                        <span>01</span>
+
+                        <div>
+                            <h3>
+                                Carefully Selected
+                            </h3>
+
+                            <p>
+                                Every Murti is selected
+                                with attention to detail.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <span>02</span>
+
+                        <div>
+                            <h3>
+                                Multiple Designs
+                            </h3>
+
+                            <p>
+                                Traditional, modern,
+                                eco-friendly and premium designs.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <span>03</span>
+
+                        <div>
+                            <h3>
+                                Live Stock Information
+                            </h3>
+
+                            <p>
+                                Check current availability
+                                before making your choice.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section
+            class="contact section"
+            id="contact"
+        >
+
+            <div class="contact-box">
+
+                <p class="eyebrow">
+                    NEED HELP?
+                </p>
+
+                <h2>
+                    Found Your Bappa?
+                </h2>
+
+                <p>
+                    If you like a Murti, contact us and
+                    we'll help you with availability,
+                    pricing and other details.
+                </p>
+
+
+                <a
+                    class="whatsapp-button"
+                    id="generalWhatsapp"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>◉</span>
+                    Contact on WhatsApp
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+
+            <strong>
+                श्री गणेश
+            </strong>
+
+            <p>
+                Ganpati Murti Collection
+            </p>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <p>
+                ॥ गणपती बाप्पा मोरया ॥
+            </p>
+
+            <span>
+                © 2026 All Rights Reserved
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         PRODUCT MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="productModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-backdrop"></div>
+
+
+        <div
+            class="modal-container"
+            role="dialog"
+            aria-modal="true"
+        >
+
+            <button
+                class="modal-close"
+                id="modalClose"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div
+                class="modal-body"
+                id="modalBody"
+            >
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
