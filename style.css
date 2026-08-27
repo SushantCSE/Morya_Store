@@ -3421,6 +3421,7 @@ select:focus-visible {
 ========================================================= */
 
 .hero {
+    min-height: min(660px, calc(100vh - 76px));
     perspective: 1200px;
 }
 
@@ -3558,6 +3559,8 @@ select:focus-visible {
 
 .hero-content {
     margin-right: min(22vw, 250px);
+    padding-top: 52px;
+    padding-bottom: 94px;
 }
 
 
@@ -3614,20 +3617,26 @@ select:focus-visible {
 
     .hero-content {
         margin-right: 0;
+        padding-top: 52px;
     }
 }
 
 
 @media (max-width: 700px) {
     .hero-stage {
-        top: 32%;
-        right: -28%;
-        width: 78vw;
-        opacity: .42;
+        top: 37%;
+        right: -25%;
+        width: 67vw;
+        opacity: .3;
+    }
+
+    .hero {
+        min-height: clamp(600px, calc(100svh - 68px), 700px);
     }
 
     .hero-content {
-        padding-top: 250px;
+        padding-top: 118px;
+        padding-bottom: 104px;
     }
 
     .stage-caption {
@@ -3647,5 +3656,23 @@ select:focus-visible {
 
     .product-card {
         transform: none;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .hero {
+        min-height: clamp(570px, calc(100svh - 68px), 660px);
+    }
+
+    .hero-stage {
+        top: 39%;
+        right: -29%;
+        width: 61vw;
+    }
+
+    .hero-content {
+        padding-top: 102px;
+        padding-bottom: 96px;
     }
 }
