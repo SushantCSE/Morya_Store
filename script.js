@@ -11,7 +11,7 @@
    Only customer-relevant information is stored here:
 
    id
-   name
+   Number
    image
    height
    status
@@ -29,7 +29,7 @@ const products = [
 
     {
         id: "ganpati-001",
-        name: "राजमुद्रा बाप्पा",
+        Number: "1",
         image: "images/1.jpeg",
         height: 3,
         status: "available"
@@ -38,7 +38,7 @@ const products = [
 
     {
         id: "ganpati-002",
-        name: "इको बाप्पा",
+        Number: "2",
         image: "images/2.jpeg",
         height: 2.5,
         status: "available"
@@ -47,7 +47,7 @@ const products = [
 
     {
         id: "ganpati-003",
-        name: "पारंपरिक बाप्पा",
+        Number: "3",
         image: "images/3.jpeg",
         height: 2.5,
         status: "available"
@@ -56,16 +56,16 @@ const products = [
 
     {
         id: "ganpati-004",
-        name: "दरबार बाप्पा",
+        Number: "4",
         image: "images/4.jpeg",
         height: 4,
-        status: "reserved"
+        status: "available"
     },
 
 
     {
         id: "ganpati-005",
-        name: "बाल बाप्पा",
+        Number: "5",
         image: "images/5.jpeg",
         height: 1.5,
         status: "available"
@@ -74,7 +74,7 @@ const products = [
 
     {
         id: "ganpati-006",
-        name: "मोरया बाप्पा",
+        Number: "6",
         image: "images/6.jpeg",
         height: 3,
         status: "available"
@@ -83,7 +83,7 @@ const products = [
 
     {
         id: "ganpati-007",
-        name: "मोरया बाप्पा",
+        Number: "7",
         image: "images/7.jpeg",
         height: 3,
         status: "available"
@@ -92,7 +92,7 @@ const products = [
 
     {
         id: "ganpati-008",
-        name: "मोरया बाप्पा",
+        Number: "8",
         image: "images/8.jpeg",
         height: 3,
         status: "available"
@@ -101,7 +101,7 @@ const products = [
 
     {
         id: "ganpati-009",
-        name: "मोरया बाप्पा",
+        Number: "9",
         image: "images/9.jpeg",
         height: 3,
         status: "available"
@@ -110,7 +110,7 @@ const products = [
 
     {
         id: "ganpati-010",
-        name: "मोरया बाप्पा",
+        Number: "10",
         image: "images/10.jpeg",
         height: 3,
         status: "available"
@@ -119,11 +119,91 @@ const products = [
 
     {
         id: "ganpati-011",
-        name: "मोरया बाप्पा",
+        Number: "11",
         image: "images/11.jpeg",
         height: 3,
         status: "available"
-    }
+    },
+
+    {
+        id: "ganpati-012",
+        Number: "12",
+        image: "images/12.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-013",
+        Number: "13",
+        image: "images/13.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-014",
+        Number: "14",
+        image: "images/14.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-015",
+        Number: "15",
+        image: "images/15.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-016",
+        Number: "16",
+        image: "images/16.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-017",
+        Number: "17",
+        image: "images/17.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-018",
+        Number: "18",
+        image: "images/18.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-019",
+        Number: "19",
+        image: "images/19.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-020",
+        Number: "20",
+        image: "images/20.jpeg",
+        height: 3,
+        status: "available"
+    },
+
+    {
+        id: "ganpati-021",
+        Number: "21",
+        image: "images/21.jpeg",
+        height: 3,
+        status: "available"
+    },
 
 ];
 
@@ -154,11 +234,9 @@ const WHATSAPP_NUMBER = "918421296129";
    STATE
 ========================================================= */
 
-let currentFilter = "all";
+let selectedSize = "all";
 
-let currentSearch = "";
-
-
+let selectedAvailability = "all";
 
 /* =========================================================
    DOM ELEMENTS
@@ -176,16 +254,12 @@ const heroProductCount =
     document.getElementById("heroProductCount");
 
 
-const searchInput =
-    document.getElementById("searchInput");
+const sizeFilter =
+    document.getElementById("sizeFilter");
 
 
-const sortSelect =
-    document.getElementById("sortSelect");
-
-
-const emptyState =
-    document.getElementById("emptyState");
+const availabilityFilter =
+    document.getElementById("availabilityFilter");
 
 
 const productModal =
@@ -198,10 +272,6 @@ const modalBody =
 
 const modalClose =
     document.getElementById("modalClose");
-
-
-const clearFiltersBtn =
-    document.getElementById("clearFiltersBtn");
 
 
 const mobileMenuBtn =
@@ -257,105 +327,28 @@ function setupGallery() {
 
     renderProducts();
 
+    setupMotionEffects();
 
 
-    /*
-        Search
-    */
-
-    searchInput.addEventListener(
-        "input",
-        () => {
-
-            currentSearch =
-                searchInput.value
-                    .trim()
-                    .toLowerCase();
-
-
-            renderProducts();
-
-        }
-    );
-
-
-    sortSelect.addEventListener(
+    sizeFilter.addEventListener(
         "change",
         () => {
+
+            selectedSize = sizeFilter.value;
             renderProducts();
-        }
-    );
-
-
-    /*
-        Filter buttons
-    */
-
-    const filterButtons =
-        document.querySelectorAll(
-            ".filter-button"
-        );
-
-
-    filterButtons.forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-
-                    /*
-                        Remove active
-                        from all buttons
-                    */
-
-                    filterButtons.forEach(
-                        item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    /*
-                        Add active
-                        to clicked button
-                    */
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    /*
-                        Store selected filter
-                    */
-
-                    currentFilter =
-                        button.dataset.filter;
-
-
-                    renderProducts();
-
-                }
-            );
 
         }
     );
 
 
+    availabilityFilter.addEventListener(
+        "change",
+        () => {
 
-    /*
-        Clear filters
-    */
+            selectedAvailability = availabilityFilter.value;
+            renderProducts();
 
-    clearFiltersBtn.addEventListener(
-        "click",
-        clearFilters
+        }
     );
 
 
@@ -401,6 +394,7 @@ function setupGallery() {
             }
 
         }
+
     );
 
 
@@ -413,19 +407,18 @@ function setupGallery() {
         "click",
         () => {
 
-            mobileMenu.classList.toggle(
-                "open"
+            const isOpen =
+                mobileMenu.classList.toggle("open");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                String(isOpen)
             );
 
         }
     );
 
 
-
-    /*
-        Close mobile menu
-        after clicking link
-    */
 
     mobileMenu
         .querySelectorAll("a")
@@ -436,9 +429,8 @@ function setupGallery() {
                     "click",
                     () => {
 
-                        mobileMenu.classList.remove(
-                            "open"
-                        );
+                        mobileMenu.classList.remove("open");
+                        mobileMenuBtn.setAttribute("aria-expanded", "false");
 
                     }
                 );
@@ -456,106 +448,32 @@ function setupGallery() {
 
 function getFilteredProducts() {
 
+    const filtered =
+        products.filter(product => {
 
-    let filtered =
-        [...products];
+            const matchesAvailability =
+                selectedAvailability === "all" ||
+                product.status === selectedAvailability;
 
+            let matchesSize = true;
 
+            if (selectedSize === "1-2") {
+                matchesSize = product.height >= 1 && product.height <= 2;
+            }
 
-    /*
-        Availability filter
-    */
+            if (selectedSize === "2-3") {
+                matchesSize = product.height > 2 && product.height <= 3;
+            }
 
-    if (
-        currentFilter !== "all"
-    ) {
+            return matchesAvailability && matchesSize;
 
-        filtered =
-            filtered.filter(
-                product =>
-                    product.status ===
-                    currentFilter
-            );
+        });
 
+    if (selectedSize !== "all") {
+        filtered.sort((first, second) => first.height - second.height);
     }
 
-
-
-    /*
-        Search
-    */
-
-    if (currentSearch) {
-
-        filtered =
-            filtered.filter(
-                product => {
-
-                    const searchableText = [
-
-                        product.name,
-
-                        product.id,
-
-                        product.height.toString(),
-
-                        getStatusText(
-                            product.status
-                        )
-
-                    ]
-                        .join(" ")
-                        .toLowerCase();
-
-
-                    return searchableText.includes(
-                        currentSearch
-                    );
-
-                }
-            );
-
-    }
-
-
-
-    return sortProducts(filtered);
-
-}
-
-
-function sortProducts(list) {
-
-    const sortValue =
-        sortSelect?.value || "featured";
-
-
-    const items = [...list];
-
-
-    if (
-        sortValue === "height-low"
-    ) {
-
-        return items.sort(
-            (a, b) => a.height - b.height
-        );
-
-    }
-
-
-    if (
-        sortValue === "height-high"
-    ) {
-
-        return items.sort(
-            (a, b) => b.height - a.height
-        );
-
-    }
-
-
-    return items;
+    return filtered;
 
 }
 
@@ -584,32 +502,6 @@ function renderProducts() {
     /*
         No results
     */
-
-    if (
-        filtered.length === 0
-    ) {
-
-        productsGrid.innerHTML = "";
-
-        emptyState.classList.add(
-            "show"
-        );
-
-        return;
-
-    }
-
-
-
-    /*
-        Hide empty state
-    */
-
-    emptyState.classList.remove(
-        "show"
-    );
-
-
 
     /*
         Create cards
@@ -655,11 +547,18 @@ function createProductCard(
 
             <!-- IMAGE -->
 
-            <div class="product-image">
+            <div
+                class="product-image"
+                role="button"
+                tabindex="0"
+                onclick="openProduct('${product.id}')"
+                onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openProduct('${product.id}'); }"
+                aria-label="मूर्ती क्रमांक ${product.Number} ची माहिती पहा"
+            >
 
                 <img
                     src="${product.image}"
-                    alt="${product.name}"
+                    alt="गणपती मूर्ती क्रमांक ${product.Number}"
                     loading="lazy"
                 >
 
@@ -680,7 +579,7 @@ function createProductCard(
 
 
                 <h3 class="product-name">
-                    ${product.name}
+                    मूर्ती क्रमांक ${product.Number}
                 </h3>
 
 
@@ -801,9 +700,9 @@ function openProduct(
 
             `नमस्कार 🙏
 
-मला "${product.name}" या गणपती मूर्तीबद्दल माहिती हवी आहे.
+मला गणपती मूर्ती क्रमांक ${product.Number} बद्दल माहिती हवी आहे.
 
-मूर्ती क्रमांक: ${product.id}
+मूर्ती क्रमांक: ${product.Number}
 उंची: ${product.height} फूट
 उपलब्धता: ${statusText}
 
@@ -852,7 +751,7 @@ ${imageUrl}
             <img
                 class="modal-main-image"
                 src="${product.image}"
-                alt="${product.name}"
+                alt="गणपती मूर्ती क्रमांक ${product.Number}"
             >
 
         </div>
@@ -863,7 +762,7 @@ ${imageUrl}
 
 
             <h2>
-                ${product.name}
+                मूर्ती क्रमांक ${product.Number}
             </h2>
 
 
@@ -1106,82 +1005,6 @@ function checkQRCodeProduct() {
 
 
 /* =========================================================
-   CLEAR FILTERS
-========================================================= */
-
-function clearFilters() {
-
-
-    currentFilter =
-        "all";
-
-
-    currentSearch =
-        "";
-
-
-
-    /*
-        Clear search
-    */
-
-    searchInput.value =
-        "";
-
-
-
-    /*
-        Remove active
-        from all filters
-    */
-
-    document
-        .querySelectorAll(
-            ".filter-button"
-        )
-        .forEach(
-            button => {
-
-                button.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-
-    /*
-        Activate All
-    */
-
-    const allButton =
-        document.querySelector(
-            '.filter-button[data-filter="all"]'
-        );
-
-
-    if (allButton) {
-
-        allButton.classList.add(
-            "active"
-        );
-
-    }
-
-
-
-    /*
-        Render again
-    */
-
-    renderProducts();
-
-}
-
-
-
-/* =========================================================
    GENERAL WHATSAPP
 ========================================================= */
 
@@ -1242,5 +1065,74 @@ function getStatusText(
             return "उपलब्ध";
 
     }
+
+}
+
+
+
+/* =========================================================
+   MOTION EFFECTS
+========================================================= */
+
+function setupMotionEffects() {
+
+    const revealItems = document.querySelectorAll(
+        ".section-heading, .results-bar, .about-content, .contact-box"
+    );
+
+    if ("IntersectionObserver" in window) {
+
+        const revealObserver = new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+
+                });
+
+            },
+            { threshold: 0.14 }
+        );
+
+        revealItems.forEach(item => {
+            item.classList.add("reveal-on-scroll");
+            revealObserver.observe(item);
+        });
+
+    }
+
+    const cards = document.querySelectorAll(".product-card");
+
+    cards.forEach(card => {
+
+        card.addEventListener("pointermove", event => {
+
+            if (window.matchMedia("(hover: none)").matches) {
+                return;
+            }
+
+            const bounds = card.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width;
+            const y = (event.clientY - bounds.top) / bounds.height;
+            const rotateX = (0.5 - y) * 7;
+            const rotateY = (x - 0.5) * 7;
+
+            card.style.setProperty("--tilt-x", `${rotateX}deg`);
+            card.style.setProperty("--tilt-y", `${rotateY}deg`);
+            card.style.setProperty("--shine-x", `${x * 100}%`);
+            card.style.setProperty("--shine-y", `${y * 100}%`);
+
+        });
+
+        card.addEventListener("pointerleave", () => {
+            card.style.setProperty("--tilt-x", "0deg");
+            card.style.setProperty("--tilt-y", "0deg");
+        });
+
+    });
 
 }

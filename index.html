@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Morya Store | सुंदर गणपती मूर्ती संग्रह. योग्य बाप्पा निवडा आणि WhatsApp वर चौकशी करा."
+      content="Morya Arts | सुंदर गणपती मूर्ती संग्रह. योग्य बाप्पा निवडा आणि WhatsApp वर चौकशी करा."
     />
     <meta name="theme-color" content="#d86f20" />
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="Morya Store | सुंदर गणपती मूर्ती संग्रह"
+      content="Morya Arts | सुंदर गणपती मूर्ती संग्रह"
     />
     <meta
       property="og:description"
@@ -24,16 +24,16 @@
     />
     <link rel="canonical" href="https://sushantcse.github.io/Morya_Store/" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <title>Morya Store | सुंदर गणपती मूर्ती संग्रह</title>
+    <title>Morya Arts | सुंदर गणपती मूर्ती संग्रह</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <header class="navbar">
-      <a href="index.html" class="logo" aria-label="Morya Store मुख्य पान">
+      <a href="index.html" class="logo" aria-label="Morya Arts मुख्य पान">
         <span class="logo-symbol">ॐ</span>
         <span>
-          श्री गणेश
+          Morya Arts
           <small>गणपती मूर्ती संग्रह</small>
         </span>
       </a>
@@ -64,6 +64,16 @@
     <main>
       <section class="hero" aria-label="मुख्य माहिती">
         <div class="hero-overlay"></div>
+
+        <div class="hero-stage" aria-hidden="true">
+          <div class="stage-ring stage-ring-one"></div>
+          <div class="stage-ring stage-ring-two"></div>
+          <div class="stage-glow"></div>
+          <div class="stage-image-wrap">
+            <img src="images/1.jpeg" alt="" class="stage-image" />
+          </div>
+          <span class="stage-caption">एक खास रूप</span>
+        </div>
 
         <div class="hero-content">
           <p class="eyebrow">॥ श्री गणेशाय नमः ॥</p>
@@ -117,61 +127,34 @@
           </p>
         </div>
 
-        <div class="gallery-controls">
-          <div class="search-wrapper">
-            <span class="search-icon" aria-hidden="true">⌕</span>
-            <input
-              type="search"
-              id="searchInput"
-              placeholder="बाप्पाचे नाव, उंची किंवा उपलब्धता शोधा..."
-              autocomplete="off"
-              aria-label="मूर्ती शोधा"
-            />
-          </div>
-
-          <div class="filters" aria-label="मूर्ती फिल्टर">
-            <button
-              class="filter-button active"
-              data-filter="all"
-              type="button"
-            >
-              सर्व मूर्ती
-            </button>
-            <button class="filter-button" data-filter="available" type="button">
-              उपलब्ध
-            </button>
-            <button class="filter-button" data-filter="reserved" type="button">
-              राखीव
-            </button>
-            <button class="filter-button" data-filter="sold" type="button">
-              विकलेली
-            </button>
-          </div>
-        </div>
-
         <div class="results-bar">
-          <p>तुमच्यासाठी <strong id="resultCount">0</strong> मूर्ती उपलब्ध</p>
+          <p>
+            <span class="results-icon" aria-hidden="true">✦</span> आमच्या
+            संग्रहातील <strong id="resultCount">0</strong> मूर्ती
+          </p>
 
-          <label class="sort-label" for="sortSelect">
-            <span class="sr-only">मूर्ती क्रमवारी</span>
-            <select id="sortSelect" aria-label="मूर्ती क्रमवारी">
-              <option value="featured">आमची खास निवड</option>
-              <option value="height-low">उंची — कमी ते जास्त</option>
-              <option value="height-high">उंची — जास्त ते कमी</option>
-            </select>
-          </label>
+          <div class="gallery-filter" aria-label="मूर्ती फिल्टर">
+            <span class="filter-label">फिल्टर</span>
+            <label>
+              <span class="sr-only">मूर्तीचा आकार</span>
+              <select id="sizeFilter" aria-label="मूर्तीचा आकार">
+                <option value="all">सर्व आकार</option>
+                <option value="1-2">1–2 फूट</option>
+                <option value="2-3">2–3 फूट</option>
+              </select>
+            </label>
+            <label>
+              <span class="sr-only">उपलब्धता</span>
+              <select id="availabilityFilter" aria-label="उपलब्धता">
+                <option value="all">सर्व उपलब्धता</option>
+                <option value="available">उपलब्ध</option>
+                <option value="reserved">राखीव</option>
+              </select>
+            </label>
+          </div>
         </div>
 
         <div class="products-grid" id="productsGrid" aria-live="polite"></div>
-
-        <div class="empty-state" id="emptyState">
-          <div class="empty-icon">ॐ</div>
-          <h3>अरेरे! बाप्पा सापडला नाही.</h3>
-          <p>शोध किंवा फिल्टर बदलून पुन्हा एकदा पहा.</p>
-          <button class="secondary-button" id="clearFiltersBtn" type="button">
-            पुन्हा सर्व मूर्ती पहा
-          </button>
-        </div>
       </section>
 
       <section class="about section" id="about" aria-labelledby="about-heading">
@@ -256,7 +239,7 @@
 
     <footer class="footer">
       <div class="footer-brand">
-        <strong>श्री गणेश</strong>
+        <strong>Morya Arts</strong>
         <p>गणपती मूर्ती संग्रह</p>
       </div>
 
