@@ -25,187 +25,38 @@
 ========================================================= */
 
 
-const products = [
+let products = [];
 
-    {
-        id: "ganpati-001",
-        Number: "1",
-        image: "images/1.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
+async function loadProductsFromFirestore() {
+    try {
+        const snapshot = await db
+            .collection("murtis")
+            .orderBy("murtiNumber")
+            .get();
 
+        products = snapshot.docs.map(doc => {
+            const data = doc.data();
 
-    {
-        id: "ganpati-002",
-        Number: "2",
-        image: "images/2.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
+            return {
+                id: doc.id,
+                Number: data.murtiNumber,
+                image: data.imagePath || "",
+                height: data.height || "",
+                status: data.status || "available"
+            };
+        });
 
+        console.log("Murtis loaded from Firestore:", products);
 
-    {
-        id: "ganpati-003",
-        Number: "3",
-        image: "images/3.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
+        // Start the existing website after Firestore data is loaded
+        setupGallery();
+        setupWhatsApp();
+        checkQRCodeProduct();
 
-
-    {
-        id: "ganpati-004",
-        Number: "4",
-        image: "images/4.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-005",
-        Number: "5",
-        image: "images/5.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-006",
-        Number: "6",
-        image: "images/6.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-007",
-        Number: "7",
-        image: "images/7.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-008",
-        Number: "8",
-        image: "images/8.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-009",
-        Number: "9",
-        image: "images/9.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-010",
-        Number: "10",
-        image: "images/10.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-
-    {
-        id: "ganpati-011",
-        Number: "11",
-        image: "images/11.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-012",
-        Number: "12",
-        image: "images/12.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-013",
-        Number: "13",
-        image: "images/13.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-014",
-        Number: "14",
-        image: "images/14.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-015",
-        Number: "15",
-        image: "images/15.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-016",
-        Number: "16",
-        image: "images/16.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-017",
-        Number: "17",
-        image: "images/17.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-018",
-        Number: "18",
-        image: "images/18.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-019",
-        Number: "19",
-        image: "images/19.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-020",
-        Number: "20",
-        image: "images/20.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-    {
-        id: "ganpati-021",
-        Number: "21",
-        image: "images/21.jpeg",
-        height: "1.5-2",
-        status: "available"
-    },
-
-];
+    } catch (error) {
+        console.error("Error loading Murtis from Firestore:", error);
+    }
+}
 
 
 
@@ -291,19 +142,9 @@ const generalWhatsapp =
    INITIAL SETUP
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        setupGallery();
-
-        setupWhatsApp();
-
-        checkQRCodeProduct();
-
-    }
-);
-
+document.addEventListener("DOMContentLoaded", () => {
+    loadProductsFromFirestore();
+});
 
 
 /* =========================================================

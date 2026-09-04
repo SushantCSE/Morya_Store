@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Morya Store - Migration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        button {
+            padding: 14px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        #migrationStatus {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Morya Store</h1>
+
+    <h2>Firestore Migration</h2>
+
+    <p>
+        This tool will add the existing 28 Murtis to Firestore.
+    </p>
+
+    <button
+        id="migrateBtn"
+        onclick="migrateMurtis()"
+        disabled>
+        Migrate 28 Murtis
+    </button>
+
+    <p id="migrationStatus">
+        Checking admin authentication...
+    </p>
+
+
+    <!-- =========================================
+         FIREBASE SDK
+         ========================================= -->
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
+
+
+    <!-- =========================================
+         FIREBASE CONFIGURATION
+         ========================================= -->
+
+    <script src="../firebase-config.js"></script>
+
+
+    <!-- =========================================
+         CHECK ADMIN AUTHENTICATION
+         ========================================= -->
+
+    <script>
+
+        firebase.auth().onAuthStateChanged(function (user) {
+
+            const button =
+                document.getElementById("migrateBtn");
+
+            const status =
+                document.getElementById("migrationStatus");
+
+
+            if (user) {
+
+                console.log(
+                    "Authenticated user:",
+                    user.uid
+                );
+
+                status.textContent =
+                    "Admin authenticated. Ready to migrate.";
+
+                button.disabled = false;
+
+            } else {
+
+                console.log(
+                    "No authenticated user."
+                );
+
+                status.textContent =
+                    "You are not logged in. Please log in through the Admin page first.";
+
+                button.disabled = true;
+
+            }
+
+        });
+
+    </script>
+
+
+    <!-- =========================================
+         MIGRATION SCRIPT
+         ========================================= -->
+
+    <script src="migrate.js"></script>
+
+</body>
+
+</html>

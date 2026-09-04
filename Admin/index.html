@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="mr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content="Morya Arts Admin"
+    />
+
+    <title>Morya Arts | Admin</title>
+
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+
+  <body>
+
+    <main class="admin-page">
+
+      <section class="login-card" id="loginCard">
+
+        <div class="admin-symbol">ॐ</div>
+
+        <p class="eyebrow">MORYA ARTS</p>
+
+        <h1>Admin Login</h1>
+
+        <p class="login-subtitle">
+          मूर्ती संग्रह व्यवस्थापित करण्यासाठी लॉगिन करा.
+        </p>
+
+        <form id="loginForm">
+
+          <div class="form-group">
+            <label for="email">ई-मेल</label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="Admin email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">पासवर्ड</label>
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="login-button"
+            id="loginButton"
+          >
+            लॉगिन करा
+          </button>
+
+          <p
+            class="login-message"
+            id="loginMessage"
+            role="alert"
+          ></p>
+
+        </form>
+
+        <a href="../index.html" class="back-link">
+          ← मुख्य वेबसाइटवर जा
+        </a>
+
+      </section>
+
+
+      <section class="dashboard-card hidden" id="dashboardCard">
+
+        <div class="dashboard-header">
+
+          <div>
+            <p class="eyebrow">MORYA ARTS</p>
+            <h1>Admin Dashboard</h1>
+          </div>
+
+          <button
+            type="button"
+            class="logout-button"
+            id="logoutButton"
+          >
+            Logout
+          </button>
+
+        </div>
+
+        <div class="welcome-box">
+          <span class="welcome-icon">✓</span>
+
+          <div>
+            <strong>लॉगिन यशस्वी झाले!</strong>
+
+            <p>
+              Firebase Authentication योग्यरित्या काम करत आहे.
+            </p>
+          </div>
+        </div>
+
+        <div class="dashboard-placeholder">
+
+          <div class="placeholder-icon">🪔</div>
+
+          <h2>मूर्ती व्यवस्थापन लवकरच</h2>
+
+          <p>
+            पुढील टप्प्यात येथे मूर्ती जोडणे, संपादित करणे
+            आणि हटवणे यासाठी पर्याय तयार करू.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- Firebase -->
+    <script type="module" src="admin.js"></script>
+
+  </body>
+</html>
