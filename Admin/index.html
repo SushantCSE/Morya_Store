@@ -1,795 +1,440 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="mr">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Morya Arts Admin Panel"
-    >
+    <meta name="description" content="Morya Arts Admin Panel" />
 
     <title>Morya Arts | Admin</title>
 
-    <link
-        rel="stylesheet"
-        href="admin.css"
-    >
+    <link rel="stylesheet" href="admin.css" />
+  </head>
 
-</head>
-
-
-<body>
-
-
-<!-- =========================================================
+  <body>
+    <!-- =========================================================
      LOGIN
 ========================================================= -->
 
-<section
-    class="login-section"
-    id="loginSection"
->
+    <section class="login-section" id="loginSection">
+      <div class="login-card">
+        <div class="login-logo">ॐ</div>
 
-    <div class="login-card">
+        <p class="login-eyebrow">MORYA ARTS</p>
 
-        <div class="login-logo">
-            ॐ
-        </div>
+        <h1>Admin Panel</h1>
 
-        <p class="login-eyebrow">
-            MORYA ARTS
-        </p>
-
-        <h1>
-            Admin Panel
-        </h1>
-
-        <p class="login-description">
-            Morya Arts Murti Collection व्यवस्थापन
-        </p>
-
+        <p class="login-description">Morya Arts Murti Collection व्यवस्थापन</p>
 
         <form id="loginForm">
+          <div class="form-group">
+            <label for="email"> Email </label>
 
-            <div class="form-group">
+            <input
+              type="email"
+              id="email"
+              placeholder="Admin email"
+              autocomplete="email"
+              required
+            />
+          </div>
 
-                <label for="email">
-                    Email
-                </label>
+          <div class="form-group">
+            <label for="password"> Password </label>
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Admin email"
-                    autocomplete="email"
-                    required
-                >
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
 
-            </div>
+          <button
+            type="submit"
+            class="primary-button full-width"
+            id="loginButton"
+          >
+            Login
+          </button>
 
-
-            <div class="form-group">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    required
-                >
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="primary-button full-width"
-                id="loginButton"
-            >
-                Login
-            </button>
-
-
-            <p
-                class="form-message error-message"
-                id="loginMessage"
-            ></p>
-
+          <p class="form-message error-message" id="loginMessage"></p>
         </form>
 
+        <a href="../index.html" class="back-link"> ← मुख्य वेबसाइटवर जा </a>
+      </div>
+    </section>
 
-        <a
-            href="../index.html"
-            class="back-link"
-        >
-            ← मुख्य वेबसाइटवर जा
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
+    <!-- =========================================================
      DASHBOARD
 ========================================================= -->
 
-<section
-    class="dashboard-section"
-    id="dashboardSection"
-    hidden
->
-
-
-    <!-- =====================================================
+    <section class="dashboard-section" id="dashboardSection" hidden>
+      <!-- =====================================================
          HEADER
     ====================================================== -->
 
-    <header class="dashboard-header">
-
+      <header class="dashboard-header">
         <div>
+          <p class="dashboard-eyebrow">MORYA ARTS</p>
 
-            <p class="dashboard-eyebrow">
-                MORYA ARTS
-            </p>
-
-            <h1>
-                Admin Dashboard
-            </h1>
-
+          <h1>Admin Dashboard</h1>
         </div>
 
-
-        <button
-            type="button"
-            class="logout-button"
-            id="logoutButton"
-        >
-            Logout
+        <button type="button" class="logout-button" id="logoutButton">
+          Logout
         </button>
+      </header>
 
-    </header>
-
-
-
-    <main class="dashboard-container">
-
-
+      <main class="dashboard-container">
         <!-- =================================================
              WELCOME
         ================================================== -->
 
         <section class="welcome-card">
+          <div>
+            <span class="welcome-icon"> 🙏 </span>
 
             <div>
+              <h2>नमस्कार Admin!</h2>
 
-                <span class="welcome-icon">
-                    🙏
-                </span>
-
-                <div>
-
-                    <h2>
-                        नमस्कार Admin!
-                    </h2>
-
-                    <p>
-                        येथे तुम्ही Morya Arts च्या Murti Collection चे व्यवस्थापन करू शकता.
-                    </p>
-
-                </div>
-
+              <p>
+                येथे तुम्ही Morya Arts च्या Murti Collection चे व्यवस्थापन करू
+                शकता.
+              </p>
             </div>
-
+          </div>
         </section>
-
-
 
         <!-- =================================================
              STATS
         ================================================== -->
 
         <section class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label"> Total Murtis </span>
 
-            <div class="stat-card">
+            <strong class="stat-number" id="totalCount"> 0 </strong>
+          </div>
 
-                <span class="stat-label">
-                    Total Murtis
-                </span>
+          <div class="stat-card available-stat">
+            <span class="stat-label"> Available </span>
 
-                <strong
-                    class="stat-number"
-                    id="totalCount"
-                >
-                    0
-                </strong>
+            <strong class="stat-number" id="availableCount"> 0 </strong>
+          </div>
 
-            </div>
+          <div class="stat-card sold-stat">
+            <span class="stat-label"> Sold </span>
 
-
-            <div class="stat-card available-stat">
-
-                <span class="stat-label">
-                    Available
-                </span>
-
-                <strong
-                    class="stat-number"
-                    id="availableCount"
-                >
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="stat-card sold-stat">
-
-                <span class="stat-label">
-                    Sold
-                </span>
-
-                <strong
-                    class="stat-number"
-                    id="soldCount"
-                >
-                    0
-                </strong>
-
-            </div>
-
+            <strong class="stat-number" id="soldCount"> 0 </strong>
+          </div>
         </section>
-
-
 
         <!-- =================================================
              ADD NEW MURTI
         ================================================== -->
 
         <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="section-eyebrow">COLLECTION MANAGEMENT</p>
 
-            <div class="panel-header">
+              <h2>➕ नवीन मूर्ती जोडा</h2>
+            </div>
+          </div>
 
-                <div>
+          <form id="addMurtiForm" class="murti-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="addMurtiNumber"> Murti Number </label>
 
-                    <p class="section-eyebrow">
-                        COLLECTION MANAGEMENT
-                    </p>
+                <input
+                  type="number"
+                  id="addMurtiNumber"
+                  min="1"
+                  step="1"
+                  placeholder="उदा. 29"
+                  required
+                />
+              </div>
 
-                    <h2>
-                        ➕ नवीन मूर्ती जोडा
-                    </h2>
+              <div class="form-group">
+                <label for="addHeight"> Height </label>
 
+                <input
+                  type="text"
+                  id="addHeight"
+                  placeholder="उदा. 2-3 ft"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="addStatus"> Availability </label>
+
+                <select id="addStatus" required>
+                  <option value="available">Available</option>
+
+                  <option value="sold">Sold</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group-wide">
+                <label for="addImagePath"> Image Path </label>
+
+                <input
+                  type="text"
+                  id="addImagePath"
+                  placeholder="उदा. images/29.jpeg"
+                  required
+                />
+
+                <small class="field-help">
+                  आधी image GitHub मधील
+                  <strong>images</strong>
+                  folder मध्ये ठेवा. उदा. <strong>images/29.jpeg</strong>
+                </small>
+
+                <div
+                  class="image-preview-box"
+                  id="addImagePreview"
+                  aria-live="polite"
+                >
+                  <span class="image-preview-placeholder">Image Preview</span>
                 </div>
-
+              </div>
             </div>
 
+            <div class="form-actions">
+              <button type="submit" class="primary-button" id="addMurtiButton">
+                ➕ Murti Save करा
+              </button>
 
-            <form
-                id="addMurtiForm"
-                class="murti-form"
-            >
+              <button
+                type="button"
+                class="secondary-button"
+                id="cancelAddButton"
+              >
+                Clear
+              </button>
+            </div>
 
-
-                <div class="form-grid">
-
-
-                    <div class="form-group">
-
-                        <label for="addMurtiNumber">
-                            Murti Number
-                        </label>
-
-                        <input
-                            type="number"
-                            id="addMurtiNumber"
-                            min="1"
-                            step="1"
-                            placeholder="उदा. 29"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <div class="form-group">
-
-                        <label for="addHeight">
-                            Height
-                        </label>
-
-                        <input
-                            type="text"
-                            id="addHeight"
-                            placeholder="उदा. 2-3 ft"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <div class="form-group">
-
-                        <label for="addStatus">
-                            Availability
-                        </label>
-
-                        <select
-                            id="addStatus"
-                            required
-                        >
-
-                            <option value="available">
-                                Available
-                            </option>
-
-                            <option value="sold">
-                                Sold
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <div class="form-group form-group-wide">
-
-                        <label for="addImagePath">
-                            Image Path
-                        </label>
-
-                        <input
-                            type="text"
-                            id="addImagePath"
-                            placeholder="उदा. images/29.jpeg"
-                            required
-                        >
-
-                        <small class="field-help">
-                            आधी image GitHub मधील
-                            <strong>images</strong>
-                            folder मध्ये ठेवा.
-                            उदा. <strong>images/29.jpeg</strong>
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-actions">
-
-                    <button
-                        type="submit"
-                        class="primary-button"
-                        id="addMurtiButton"
-                    >
-                        ➕ Murti Save करा
-                    </button>
-
-                    <button
-                        type="button"
-                        class="secondary-button"
-                        id="cancelAddButton"
-                    >
-                        Clear
-                    </button>
-
-                </div>
-
-
-                <p
-                    class="form-message"
-                    id="addMessage"
-                ></p>
-
-            </form>
-
+            <p class="form-message" id="addMessage"></p>
+          </form>
         </section>
-
-
 
         <!-- =================================================
              COLLECTION
         ================================================== -->
 
         <section class="panel">
+          <div class="panel-header collection-header">
+            <div>
+              <p class="section-eyebrow">YOUR COLLECTION</p>
 
-            <div class="panel-header collection-header">
+              <h2>Murti Collection</h2>
 
-                <div>
-
-                    <p class="section-eyebrow">
-                        YOUR COLLECTION
-                    </p>
-
-                    <h2>
-                        Murti Collection
-                    </h2>
-
-                    <p class="panel-description">
-                        येथे सर्व Murtis manage करा.
-                    </p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="secondary-button"
-                    id="refreshButton"
-                >
-                    ↻ Refresh
-                </button>
-
+              <p class="panel-description">येथे सर्व Murtis manage करा.</p>
             </div>
 
+            <button type="button" class="secondary-button" id="refreshButton">
+              ↻ Refresh
+            </button>
+          </div>
 
+          <!-- SEARCH + FILTER -->
 
-            <!-- SEARCH + FILTER -->
+          <div class="filters">
+            <div class="search-box">
+              <label for="searchInput"> Search </label>
 
-            <div class="filters">
-
-                <div class="search-box">
-
-                    <label for="searchInput">
-                        Search
-                    </label>
-
-                    <input
-                        type="search"
-                        id="searchInput"
-                        placeholder="Murti number शोधा..."
-                    >
-
-                </div>
-
-
-                <div class="filter-box">
-
-                    <label for="statusFilter">
-                        Availability
-                    </label>
-
-                    <select id="statusFilter">
-
-                        <option value="all">
-                            All
-                        </option>
-
-                        <option value="available">
-                            Available
-                        </option>
-
-                        <option value="sold">
-                            Sold
-                        </option>
-
-                    </select>
-
-                </div>
-
+              <input
+                type="search"
+                id="searchInput"
+                placeholder="Murti number शोधा..."
+              />
             </div>
 
+            <div class="filter-box">
+              <label for="statusFilter"> Availability </label>
 
+              <select id="statusFilter">
+                <option value="all">All</option>
 
-            <!-- MESSAGE -->
+                <option value="available">Available</option>
 
-            <div
-                class="loading-state"
-                id="loadingState"
-            >
-
-                <div class="loader"></div>
-
-                <p>
-                    Murti collection loading...
-                </p>
-
+                <option value="sold">Sold</option>
+              </select>
             </div>
+          </div>
 
+          <!-- MESSAGE -->
 
-            <div
-                class="error-state"
-                id="errorState"
-                hidden
-            >
+          <div class="loading-state" id="loadingState">
+            <div class="loader"></div>
 
-                <div class="error-icon">
-                    ⚠️
-                </div>
+            <p>Murti collection loading...</p>
+          </div>
 
-                <h3>
-                    Collection load झाली नाही
-                </h3>
+          <div class="error-state" id="errorState" hidden>
+            <div class="error-icon">⚠️</div>
 
-                <p id="errorText">
-                    कृपया पुन्हा प्रयत्न करा.
-                </p>
+            <h3>Collection load झाली नाही</h3>
 
-                <button
-                    type="button"
-                    class="primary-button"
-                    id="retryButton"
-                >
-                    पुन्हा प्रयत्न करा
-                </button>
+            <p id="errorText">कृपया पुन्हा प्रयत्न करा.</p>
 
-            </div>
+            <button type="button" class="primary-button" id="retryButton">
+              पुन्हा प्रयत्न करा
+            </button>
+          </div>
 
+          <div class="empty-state" id="emptyState" hidden>
+            <div class="empty-icon">🪔</div>
 
-            <div
-                class="empty-state"
-                id="emptyState"
-                hidden
-            >
+            <h3>कोणतीही Murti सापडली नाही</h3>
 
-                <div class="empty-icon">
-                    🪔
-                </div>
+            <p>Search किंवा filter बदला.</p>
+          </div>
 
-                <h3>
-                    कोणतीही Murti सापडली नाही
-                </h3>
-
-                <p>
-                    Search किंवा filter बदला.
-                </p>
-
-            </div>
-
-
-            <div
-                class="murti-list"
-                id="murtiList"
-            ></div>
-
+          <div class="murti-list" id="murtiList"></div>
         </section>
-
-
 
         <!-- =================================================
              FUTURE / INFORMATION
         ================================================== -->
 
         <section class="info-card">
+          <h3>💡 Image workflow</h3>
 
-            <h3>
-                💡 Image workflow
-            </h3>
+          <p>
+            Murti image GitHub च्या
+            <strong>images/</strong>
+            folder मध्ये ठेवा.
+          </p>
 
-            <p>
-                Murti image GitHub च्या
-                <strong>images/</strong>
-                folder मध्ये ठेवा.
-            </p>
+          <p>
+            उदाहरण:
+            <strong>images/29.jpeg</strong>
+          </p>
 
-            <p>
-                उदाहरण:
-                <strong>images/29.jpeg</strong>
-            </p>
-
-            <p>
-                त्यानंतर येथे Murti add करताना तोच Image Path द्या.
-            </p>
-
+          <p>त्यानंतर येथे Murti add करताना तोच Image Path द्या.</p>
         </section>
-
-
 
         <!-- =================================================
              BACK TO WEBSITE
         ================================================== -->
 
-        <a
-            href="../index.html"
-            class="website-button"
-        >
-            ← मुख्य वेबसाइटवर जा
+        <a href="../index.html" class="website-button">
+          ← मुख्य वेबसाइटवर जा
         </a>
+      </main>
+    </section>
 
-
-    </main>
-
-</section>
-
-
-
-<!-- =========================================================
+    <!-- =========================================================
      EDIT MODAL
 ========================================================= -->
 
-<div
-    class="modal"
-    id="editModal"
-    aria-hidden="true"
->
+    <div class="modal" id="editModal" aria-hidden="true">
+      <div class="modal-backdrop" id="editModalBackdrop"></div>
 
-    <div
-        class="modal-backdrop"
-        id="editModalBackdrop"
-    ></div>
-
-
-    <div class="modal-card">
-
+      <div class="modal-card">
         <div class="modal-header">
+          <div>
+            <p class="section-eyebrow">EDIT MURTI</p>
 
-            <div>
+            <h2>
+              Murti #
+              <span id="editMurtiNumberTitle"> - </span>
+            </h2>
+          </div>
 
-                <p class="section-eyebrow">
-                    EDIT MURTI
-                </p>
-
-                <h2>
-                    Murti #
-                    <span id="editMurtiNumberTitle">
-                        -
-                    </span>
-                </h2>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="modal-close"
-                id="editModalClose"
-                aria-label="Close"
-            >
-                ×
-            </button>
-
+          <button
+            type="button"
+            class="modal-close"
+            id="editModalClose"
+            aria-label="Close"
+          >
+            ×
+          </button>
         </div>
 
-
         <form id="editMurtiForm">
+          <input type="hidden" id="editDocumentId" />
 
+          <div class="form-group">
+            <label> Murti Number </label>
 
-            <input
-                type="hidden"
-                id="editDocumentId"
+            <input type="text" id="editMurtiNumber" readonly />
+          </div>
+
+          <div class="form-group">
+            <label for="editHeight"> Height </label>
+
+            <input type="text" id="editHeight" required />
+          </div>
+
+          <div class="form-group">
+            <label for="editStatus"> Availability </label>
+
+            <select id="editStatus" required>
+              <option value="available">Available</option>
+
+              <option value="sold">Sold</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="editImagePath"> Image Path </label>
+
+            <input type="text" id="editImagePath" required />
+
+            <div
+              class="image-preview-box"
+              id="editImagePreview"
+              aria-live="polite"
             >
-
-
-            <div class="form-group">
-
-                <label>
-                    Murti Number
-                </label>
-
-                <input
-                    type="text"
-                    id="editMurtiNumber"
-                    readonly
-                >
-
+              <span class="image-preview-placeholder"
+                >Updated Image Preview</span
+              >
             </div>
+          </div>
 
+          <div class="form-actions">
+            <button type="submit" class="primary-button" id="saveEditButton">
+              Save Changes
+            </button>
 
-            <div class="form-group">
+            <button
+              type="button"
+              class="secondary-button"
+              id="cancelEditButton"
+            >
+              Cancel
+            </button>
+          </div>
 
-                <label for="editHeight">
-                    Height
-                </label>
-
-                <input
-                    type="text"
-                    id="editHeight"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="editStatus">
-                    Availability
-                </label>
-
-                <select
-                    id="editStatus"
-                    required
-                >
-
-                    <option value="available">
-                        Available
-                    </option>
-
-                    <option value="sold">
-                        Sold
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="editImagePath">
-                    Image Path
-                </label>
-
-                <input
-                    type="text"
-                    id="editImagePath"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-actions">
-
-                <button
-                    type="submit"
-                    class="primary-button"
-                    id="saveEditButton"
-                >
-                    Save Changes
-                </button>
-
-                <button
-                    type="button"
-                    class="secondary-button"
-                    id="cancelEditButton"
-                >
-                    Cancel
-                </button>
-
-            </div>
-
-
-            <p
-                class="form-message"
-                id="editMessage"
-            ></p>
-
+          <p class="form-message" id="editMessage"></p>
         </form>
-
+      </div>
     </div>
 
-</div>
-
-
-
-<!-- =========================================================
+    <!-- =========================================================
      FIREBASE
 ========================================================= -->
 
-<script type="module">
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-
-    import {
+      import {
         getAuth,
         signInWithEmailAndPassword,
         onAuthStateChanged,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
-    import {
+      import {
         getFirestore,
         collection,
         getDocs,
@@ -801,49 +446,44 @@
         getDoc,
         setDoc,
         updateDoc,
-        deleteDoc
-    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+        deleteDoc,
+      } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-
-    /*
+      /*
         firebase-config.js is already present
         in the root Morya_Store folder.
     */
 
-    const firebaseConfig = {
+      const firebaseConfig = {
         apiKey: "AIzaSyBhndR9oFuLWEUVvDOQDzzepv2p7sGPKG4",
         authDomain: "moryastore-2a88e.firebaseapp.com",
         projectId: "moryastore-2a88e",
         storageBucket: "moryastore-2a88e.firebasestorage.app",
         messagingSenderId: "891569428587",
         appId: "1:891569428587:web:4712e19c6898e6471af92e",
-        measurementId: "G-W32ZYR66CK"
-    };
+        measurementId: "G-W32ZYR66CK",
+      };
 
-    const app = initializeApp(firebaseConfig);
+      const app = initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
+      const auth = getAuth(app);
 
-    const db = getFirestore(app);
+      const db = getFirestore(app);
 
-
-    /*
+      /*
         IMPORTANT:
         Only this Firebase Auth UID is allowed
         to use the Admin panel.
     */
 
-    const ADMIN_UID =
-        "ToXEvCMED0T7udiO3xXtvcVzBiN2";
+      const ADMIN_UID = "ToXEvCMED0T7udiO3xXtvcVzBiN2";
 
-
-    /*
+      /*
         Make Firebase objects available
         to admin.js.
     */
 
-    window.MoryaAdmin = {
-
+      window.MoryaAdmin = {
         app,
         auth,
         db,
@@ -865,16 +505,10 @@
         updateDoc,
         deleteDoc,
 
-        ADMIN_UID
+        ADMIN_UID,
+      };
+    </script>
 
-    };
-
-</script>
-
-
-<script src="admin.js"></script>
-
-
-</body>
-
+    <script src="admin.js"></script>
+  </body>
 </html>

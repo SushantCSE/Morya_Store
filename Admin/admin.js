@@ -86,6 +86,9 @@ const addStatus =
 const addImagePath =
     document.getElementById("addImagePath");
 
+const addImagePreview =
+    document.getElementById("addImagePreview");
+
 const addMurtiButton =
     document.getElementById("addMurtiButton");
 
@@ -163,6 +166,9 @@ const editStatus =
 
 const editImagePath =
     document.getElementById("editImagePath");
+
+const editImagePreview =
+    document.getElementById("editImagePreview");
 
 const saveEditButton =
     document.getElementById("saveEditButton");
@@ -1329,6 +1335,7 @@ function openEditModal(id) {
     editImagePath.value =
         murti.imagePath;
 
+    updateImagePreview(editImagePath, editImagePreview, "Updated Image Preview");
 
     clearFormMessage(
         editMessage
@@ -1739,6 +1746,24 @@ function clearFormMessage(
         "form-message";
 
 }
+
+function updateImagePreview(inputEl, previewEl, fallbackText) {
+    const value = (inputEl.value || "").trim();
+
+    if (!value) {
+        previewEl.classList.remove("visible");
+        previewEl.innerHTML = `<span class="image-preview-placeholder">${fallbackText}</span>`;
+        return;
+    }
+
+    previewEl.classList.add("visible");
+    previewEl.innerHTML = `
+        <img src="../${value.replace(/^\.\//, "")}" alt="${fallbackText}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\"image-preview-placeholder\">Preview unavailable</span>';" />
+    `;
+}
+
+addImagePath.addEventListener("input", () => updateImagePreview(addImagePath, addImagePreview, "Image Preview"));
+editImagePath.addEventListener("input", () => updateImagePreview(editImagePath, editImagePreview, "Updated Image Preview"));
 
 
 /* =========================================================

@@ -91,10 +91,11 @@ body {
         var(--bg);
 
     color: var(--text);
-
     line-height: 1.7;
-
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
 }
 
@@ -564,7 +565,7 @@ a {
         );
 
     animation:
-        floatGlow 8s ease-in-out infinite;
+        floatGlow 14s ease-in-out infinite;
 
     z-index: -1;
 
@@ -593,7 +594,7 @@ a {
     z-index: -1;
 
     animation:
-        slowFloat 7s ease-in-out infinite;
+        slowFloat 12s ease-in-out infinite;
 
 }
 
@@ -707,6 +708,8 @@ a {
 
     font-weight: 900;
 
+    animation: heroContentReveal 760ms 90ms cubic-bezier(.2, .75, .25, 1) both;
+
 }
 
 
@@ -764,6 +767,8 @@ a {
 
     line-height: 1.9;
 
+    animation: heroContentReveal 760ms 190ms cubic-bezier(.2, .75, .25, 1) both;
+
 }
 
 
@@ -808,6 +813,8 @@ a {
     transition:
         transform var(--transition),
         box-shadow var(--transition);
+
+    animation: heroContentReveal 760ms 290ms cubic-bezier(.2, .75, .25, 1) both;
 
 }
 
@@ -1486,7 +1493,7 @@ a {
 .product-card:hover {
 
     transform:
-        translateY(-9px);
+        translateY(-6px);
 
     box-shadow:
         var(--shadow-lg);
@@ -2395,28 +2402,8 @@ a {
         1px solid
         rgba(47,140,88,.18);
 
-    animation:
-        whatsappPulse 2.2s ease-out infinite;
-
-}
-
-
-@keyframes whatsappPulse {
-
-    0% {
-        opacity: .8;
-        transform: scale(.98);
-    }
-
-    70% {
-        opacity: 0;
-        transform: scale(1.07);
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(1.07);
-    }
+    opacity: 0;
+    transition: opacity var(--transition), transform var(--transition);
 
 }
 
@@ -2913,6 +2900,61 @@ select:focus-visible {
     outline-offset:
         3px;
 
+}
+
+.loading-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.skeleton-image {
+    height: 320px;
+    background: linear-gradient(90deg, #f2e7d9 25%, #f7efe6 50%, #f2e7d9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2.2s infinite linear;
+}
+
+.skeleton-content {
+    padding: 20px;
+    display: grid;
+    gap: 12px;
+}
+
+.skeleton-line {
+    display: block;
+    height: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f2e7d9 25%, #f7efe6 50%, #f2e7d9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2.2s infinite linear;
+}
+
+.skeleton-line.short {
+    width: 45%;
+}
+
+.skeleton-line.medium {
+    width: 72%;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 
@@ -3590,7 +3632,7 @@ select:focus-visible {
 
 
 .product-card:hover {
-    transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-9px);
+    transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-6px);
 }
 
 
@@ -3665,7 +3707,10 @@ select:focus-visible {
     .stage-ring,
     .stage-glow,
     .stage-image-wrap,
-    .hero-stage::before {
+    .hero-stage::before,
+    .hero h1,
+    .hero-description,
+    .hero .primary-button {
         animation: none;
     }
 
@@ -3690,4 +3735,134 @@ select:focus-visible {
         padding-top: 102px;
         padding-bottom: 96px;
     }
+}
+
+.nav-links a,
+.mobile-menu a,
+.footer a {
+    position: relative;
+    transition: color var(--transition), transform var(--transition);
+}
+
+.nav-links a::after,
+.mobile-menu a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    left: 0;
+    height: 2px;
+    border-radius: 99px;
+    background: var(--saffron);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition);
+}
+
+.nav-links a:hover,
+.mobile-menu a:hover,
+.footer a:hover {
+    color: var(--saffron-dark);
+}
+
+.nav-links a:hover::after,
+.mobile-menu a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.mobile-menu.open {
+    animation: menuDrop 260ms cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.product-card {
+    will-change: transform;
+}
+
+.product-image img {
+    backface-visibility: hidden;
+}
+
+.product-card:focus-within {
+    border-color: rgba(201, 154, 61, .42);
+    box-shadow: var(--shadow);
+}
+
+.view-product,
+.secondary-button,
+.modal-whatsapp,
+.whatsapp-button {
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+}
+
+.view-product:hover,
+.secondary-button:hover,
+.modal-whatsapp:hover,
+.whatsapp-button:hover {
+    transform: translateY(-2px);
+}
+
+.primary-button span,
+.view-product {
+    transition: transform var(--transition);
+}
+
+.primary-button:hover span {
+    transform: translateY(3px);
+}
+
+.view-product:hover {
+    color: var(--saffron-dark);
+}
+
+.modal.show .modal-body > * {
+    animation: modalContentReveal 480ms cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.modal.show .modal-body > *:nth-child(2) {
+    animation-delay: 70ms;
+}
+
+@keyframes modalContentReveal {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close:focus-visible,
+.modal-close:hover {
+    transform: rotate(90deg) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-menu.open,
+    .modal.show .modal-body > *,
+    .product-card,
+    .product-card:hover {
+        animation: none;
+        transform: none;
+    }
+}
+
+@keyframes heroContentReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.whatsapp-button:hover::before,
+.modal-whatsapp:hover::before {
+    opacity: 1;
+    transform: scale(1.025);
 }
